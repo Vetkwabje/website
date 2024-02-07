@@ -8,12 +8,12 @@ var cnv;
 
 
 
-function windowResized() {
-    resizeCanvas(windowWidth, windowHeight);
-    centerCanvas();
-    background(0);
-    createPoints();
-}
+// function windowResized() {
+//     resizeCanvas(windowWidth, windowHeight);
+//     centerCanvas();
+//     background(0);
+//     createPoints();
+// }
 
 function centerCanvas() {
     var x = (windowWidth - width) / 2;
