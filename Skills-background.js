@@ -2,6 +2,8 @@ var nr_prtcls;
 var particles = [];
 var colors = [];
 const angleSharpness = 3;
+
+
 function windowResized() {
     resizeCanvas(windowWidth, windowHeight);
     background(0);
@@ -20,6 +22,8 @@ function setup() {
     ];
     console.log(colors[1]);
 }
+
+
 
 function createParticles(nr_prtcls) {
     //Choose mainCol randomly from colors;

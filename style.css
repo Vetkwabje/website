@@ -11,7 +11,7 @@ html, body {
     --back: #010101;
     --primary: #8e0c24;
     --secondary: #0c0d23;
-    --accent: #113256;
+  /*--accent: #113256; */
     font: 16px/1.5 "Helvetica Neue", Helvetica, Arial, sans-serif;
     font-size: 16px;
   }
@@ -39,6 +39,14 @@ img {
     z-index: 0;
   }
 
+.logo {
+  animation: fadeInLogo ease 12s;
+  -webkit-animation: fadeInLogo ease 12s;
+  -moz-animation: fadeInLogo ease 12s;
+  -o-animation: fadeInLogo ease 12s;
+  -ms-animation: fadeInLogo ease 12s;
+
+}
 
 nav {
   display: flex;
@@ -46,18 +54,18 @@ nav {
   top: 0;
   background: rgba(0, 0, 0, 0.45);
   padding: 5px;
-
+  cursor: none;
   z-index: 1;
 }
 
 nav .nav-content {
   height: 100%;
-
   align-items: center;
   position: relative;
   display: flex;
   justify-content: space-between;
   margin: auto;
+
 
 }
 
@@ -83,17 +91,13 @@ nav .nav-content .nav-links li{
 }
 
 .nav-links li a:hover {
-  color: var(--primary);
 
+
+    background: -webkit-linear-gradient(var(--primary), var(--secondary));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+  
 }
-
-
-bodY {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
 
 
 .fade-in-nav {
@@ -104,6 +108,18 @@ bodY {
   -ms-animation: fadeIn ease 12s;
 }
 
+@keyframes fadeInLogo {
+  0% {
+    opacity: 0;
+    filter: blur(30px);
+  }
+
+  100% {
+    opacity: 1;
+    filter: blur(0px);
+  }
+
+}
 @keyframes fadeIn {
   0% {
     opacity:0;
