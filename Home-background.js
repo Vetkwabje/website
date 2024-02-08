@@ -56,12 +56,11 @@ function generateColors() {
     myFunction_set('--b1', b1);
     myFunction_set('--b2', b2);
 
-
     let c = color(max(r1, r2), max(g1, g2), max(b1, b2), 255);
 
     myFunction_set('--primary', c.toString('#rrggbb'));
 
-    myFunction_set('--secondary', color(min(100, min(r1, r2)), min(100, min(g1, g2)), min(100, min(b1, b2)), 255).toString('#rrggbb'));
+    myFunction_set('--secondary', color(min(r1, r2), min(g1, g2), min(b1, b2), 255).toString('#rrggbb'));
 
 }
 
@@ -80,7 +79,11 @@ document.ontouchmove = function(event){
 }
 
 function setup() {
+    frameRate(90);
     generateColors();
+
+
+    // Get colors from CSS (=> Deprecated?) 
     colors = [
         getComputedStyle(document.documentElement).getPropertyValue('--back'),
         getComputedStyle(document.documentElement).getPropertyValue('--text'),
@@ -113,8 +116,7 @@ function draw() {
     background(0, 3);
     drawPoints(); 
     removePoints();
-
-
+    console.log(points.length, frameRate());
 }
 
 function drawPoints() {
@@ -127,13 +129,13 @@ function drawPoints() {
         let g = map(points[i].y, 0, windowHeight, g2, g2);
         let b = map(points[i].x, 0, windowWidth, b1, b2);
         
-        let c = color(r, g, b, alpha);
+        let stackCol = color(r, g, b, alpha);
         //let c = color(colors[int(colors.length * noise(points[i].x * mult, points[i].y * mult))]);
 
         let weight = 2;
         //let weight = map(distFromCenter, 0, maxDist, 4, 1.5);
-        fill(c);
-        stroke(c);
+        fill(stackCol);
+        stroke(stackCol);
         
         strokeWeight(weight);
         
@@ -154,12 +156,6 @@ function mouseMoved() {
 
 function createPoints() {
     points = [];
-    // r1 = random(255);
-    // r2 = random(255);
-    // g1 = random(255);
-    // g2 = random(255);
-    // b1 = random(255);
-    // b2 = random(255);
 
 
     r1 = int(getComputedStyle(document.documentElement).getPropertyValue('--r1'));
@@ -173,8 +169,8 @@ function createPoints() {
 
 
 
-    noiseDetail(int(random(1, 10)), random(0.2, 0.5));
-    mult = random(0.0008, 0.05);
+    noiseDetail(int(random(1, 5)), random(0.5));
+    mult = random(0.00008, 0.04);
     angleMult = int(random(1, 2));
 
     const density = int(random(24, 50));
@@ -200,9 +196,16 @@ function createPoints() {
 
 
 function removePoints() {
-    // If outside area (width, height) remove
+    // If points array is greater than 1000, remove a random point from points
+
+    if (points.length > 1000) {
+        points.splice(int(random() * points.length), 1);
+    }
+
     for (var i = points.length - 1; i >= 0; i--) {
         if (points[i].x < 0 || points[i].x > width || points[i].y < 0 || points[i].y > height) {
+            // Remove a random point from points if length of points is greater than 1000, else set point to a new random position
+
             points[i].x = random(width);
             points[i].y = random(height);
         }
