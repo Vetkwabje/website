@@ -1,13 +1,17 @@
-var points = []
+var cnv;
 
+//Main heap array
+var points = [];
+
+//Variables for colors and angles
 var mult;
 var colors;
 var angleMult; 
 
 var r1, r2, g1, g2, b1, b2;
 var r, g, b;
-var cnv;
 
+var maxCount = 2000;
 
 
 function windowResized() {
@@ -108,10 +112,6 @@ function setup() {
 
 
 
-
-
-
-
 function draw() {
     background(0, 3);
     drawPoints(); 
@@ -170,16 +170,21 @@ function createPoints() {
 
 
     noiseDetail(int(random(1, 5)), random(0.5));
-    mult = random(0.00008, 0.04);
+    mult = random(0.02);
     angleMult = int(random(1, 2));
 
-    const density = int(random(24, 50));
-    const space = width / density * pixelDensity();
+    const density = int(random(24, 60));
+    const space = height / density * pixelDensity();
 
-    let margin = 10;
+    let count = 0;
+
     let gap = 100;
-    for (var x = -margin; x < width + margin; x += space) {
-        for (var y = -margin; y < height + margin; y += space) {
+
+    for (var x = 0; x < width; x += space) {
+        for (var y = 0; y < height; y += space) {
+            if (count > maxCount) {
+                break;
+            }
             let randomX = random(-gap, gap);
             let randomY = random(-gap, gap);
             let posX = x + randomX;
@@ -188,6 +193,7 @@ function createPoints() {
             var p = createVector(posX, posY);
 
             points.push(p);
+            count++;
         }
     }
 
@@ -198,7 +204,7 @@ function createPoints() {
 function removePoints() {
     // If points array is greater than 1000, remove a random point from points
 
-    if (points.length > 1000) {
+    if (points.length > maxCount) {
         points.splice(int(random() * points.length), 1);
     }
 

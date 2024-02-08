@@ -4,36 +4,37 @@ html, body {
     overflow: hidden;
     scroll-behavior: smooth;
     background: (--back);
-max-height: 100%;
+    max-height: 100%;
   }
 
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                ::-webkit-scrollbar {
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  display: none;
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                }
-  :root {  
-    --text: #e9dfe4;
-    --back: #010101;
-    --primary: #8e0c24;
-    --secondary: #0c0d23;
+::-webkit-scrollbar {
+  display: none;
+}
+
+:root {
+  --text: #e9dfe4;
+  --back: #010101;
+  --primary: #8e0c24;
+  --secondary: #0c0d23;
   /*--accent: #113256; */
-    font: 16px/1.5 "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font: 16px/1.5 "Helvetica Neue", Helvetica, Arial, sans-serif;
     font-size: 16px;
   }
 
-  canvas {
-    display: block;
-    z-index: 0;
-    width: 100vw;
-    height: 100vh;
+canvas {
+  display: block;
+  z-index: 0;
+  width: 100vw;
+  height: 100vh;
 
-  }
-  
-  .Overlay {
-    position: absolute;
-    z-index: 1;
-    width: 100%;
-    margin: auto;
-  }
+}
+
+.Overlay {
+  position: absolute;
+  z-index: 1;
+  width: 100%;
+  margin: auto;
+}
 
 img {
     width: 12vmin;
